@@ -5,6 +5,7 @@ use \Classes\UTI\ConnexionManager;
 use \Classes\UTI\DepManager;
 use \Classes\UTI\DivisionManager;
 
+$patternTel = " pattern=\"[0-9]{10}\"";
 $isComplete = true;
 $boxEmpty = [];
 foreach ($_POST as $key => $value){
@@ -24,7 +25,7 @@ if (!$isComplete || empty($_POST)) {
         <input class="boxAjPers" type="text" name="prenom">
         <br>
         <label class="lbAjPers">Téléphone :</label>
-        <input class="boxAjPers" type="number" name="telephone">
+        <input class="boxAjPers" type="tel" <?= $patternTel ?> name="telephone">
         <br>
         <label class="lbAjPers">Mail :</label>
         <input class="boxAjPers" type="email" name="email">
@@ -57,7 +58,7 @@ if (!$isComplete || empty($_POST)) {
     <em>sont vides</em>
 <?php
     }
-} else {
+} elseif ($isComplete) {
     $managerPers = new PersManager();
     $connexionManager = new ConnexionManager($managerPers);
     $_POST['mdp'] = $connexionManager->tradMdp($_POST['mdp']);
@@ -94,7 +95,27 @@ if (!$isComplete || empty($_POST)) {
         </form>
 <?php
     } else {
+?>
+        <label class="lbAjPers">Téléphone professionnel :</label>
+        <input class="boxAjPers" type="tel" <?= $patternTel ?> name="telephone">
 
+        <label class="lbAjPers">Fonction :</label>
+        <select id="boxAjPers" name="annee">
+            <?php
+            foreach ($departements as $departement){
+                ?>
+                <option value=<?='"'.$departement->dep_nom.'"'?>><?='"'.$departement->dep_nom.'"'?></option>
+                <?php
+            }
+            ?>
+        </select>
+<?php
     }
+} else {
+?>
+    <p>Votre personne a été ajouté avec succès</p>
+    <script>redirectionAccueil()</script>
+
+    <?php
 }
 ?>
