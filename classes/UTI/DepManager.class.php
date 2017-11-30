@@ -19,7 +19,7 @@ class DepManager
 
     public function getAllDepartements()
     {
-        return App::getDb()->query('SELECT dep_nom FROM departement');
+        return App::getDb()->query('SELECT dep_num, dep_nom FROM departement');
     }
 }
 

@@ -1,12 +1,13 @@
 <?php
 namespace Classes\UTI;
 
+use Classes\App;
 class DivisionManager{
 
-    public function add($ville)
+    public function add($div_nom)
     {
         App::getDb()->prepare(
-            'INSERT INTO division(div_nom) VALUES (?)',[$ville]);
+            'INSERT INTO division(div_nom) VALUES (?)',[$div_nom]);
     }
 
     public function getAllDivision()
@@ -16,7 +17,7 @@ class DivisionManager{
 
     public function getDivision($value)
     {
-        return App::getDb()->prepare('SELECT div_nom FROM division WHERE div_num= ?', [$value], true);
+        return App::getDb()->prepare('SELECT div_num, div_nom FROM division WHERE div_num= ?', [$value], true);
     }
 
 }

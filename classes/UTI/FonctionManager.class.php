@@ -14,6 +14,11 @@ class FonctionManager
     {
         return App::getDb()->prepare('SELECT fon_libelle FROM fonction WHERE fon_num=:fon_num', [$value], true);
     }
+
+    public function getAllFonctions()
+    {
+        return App::getDb()->query('SELECT fon_num, fon_libelle FROM fonction');
+    }
 }
 
 

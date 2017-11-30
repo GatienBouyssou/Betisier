@@ -20,6 +20,10 @@ class PersManager
         return App::getDb()->prepare('SELECT per_nom, per_mail ,per_tel FROM personne WHERE per_num= ?', [$value], true);
     }
 
+    public function getPersByLogin($per_login)
+    {
+        return App::getDb()->prepare('SELECT per_num FROM personne WHERE per_login= ?', [$per_login], true);
+    }
     /**
      * @return mixed
      */

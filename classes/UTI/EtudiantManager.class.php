@@ -14,6 +14,10 @@ class EtudiantManager extends PersManager
         return App::getDb()->prepare('SELECT dep_num FROM etudiant WHERE per_num= ?', [$value], true);
     }
 
+    public function  addEtudiant($infoEtu){
+        App::getDb()->prepare('INSERT INTO etudiant VALUES(?,?,?)', $infoEtu);
+    }
+
 }
 
 
