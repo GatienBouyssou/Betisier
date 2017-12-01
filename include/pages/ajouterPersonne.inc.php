@@ -13,31 +13,31 @@ $patternTel = " pattern=\"[0-9]{10}\"";
 if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat']) ) {
     ?>
     <form id="formConnect" action="index.php?page=1" method="post">
-        <label class="lbAjPers">Nom :</label>
-        <input class="boxAjPers" type="text" name="nom" required>
+        <label class="labelGauche">Nom :</label>
+        <input class="boxDroite" type="text" name="nom" required>
         <br>
-        <label class="lbAjPers">Prénom :</label>
-        <input class="boxAjPers" type="text" name="prenom" required>
+        <label class="labelGauche">Prénom :</label>
+        <input class="boxDroite" type="text" name="prenom" required>
         <br>
-        <label class="lbAjPers">Téléphone :</label>
-        <input class="boxAjPers" type="tel" <?= $patternTel ?> name="telephone" required>
+        <label class="labelGauche">Téléphone :</label>
+        <input class="boxDroite" type="tel" <?= $patternTel ?> name="telephone" required>
         <br>
-        <label class="lbAjPers">Mail :</label>
-        <input class="boxAjPers" type="email" name="email" required>
+        <label class="labelGauche">Mail :</label>
+        <input class="boxDroite" type="email" name="email" required>
         <br>
-        <label class="lbAjPers">Login :</label>
-        <input class="boxAjPers" type="text" name="login" required>
+        <label class="labelGauche">Login :</label>
+        <input class="boxDroite" type="text" name="login" required>
         <br>
-        <label class="lbAjPers">Mot de passe :</label>
-        <input class="boxAjPers" type="password" name="mdp" required>
+        <label class="labelGauche">Mot de passe :</label>
+        <input class="boxDroite" type="password" name="mdp" required>
         <br>
-        <label class="lbAjPers">Categorie :</label>
-        <label class="boxAjPers">
+        <label class="labelGauche">Categorie :</label>
+        <label class="boxDroite">
             Etudiant<input type="radio" checked="checked" name="etat" value="etudiant">
             Salarié <input type="radio" name="etat" value="salarie">
         </label>
 
-        <input class="boxAjPers" type="submit" value="Valider">
+        <input class="boxDroite" type="submit" value="Valider">
     </form>
 <?php
 } elseif (!empty($_POST['etat']) && empty($_POST['fonction']) && empty($_POST['division'])) {
@@ -58,8 +58,8 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
 
 ?>
         <form id="formConnectEtudiant" action="index.php?page=1" method="post">
-            <label class="lbAjPers">Année :</label>
-            <select class="boxAjPers" name="division">
+            <label class="labelGauche">Année :</label>
+            <select class="boxDroite" name="division">
                 <?php
                 foreach ($divisions as $division){
                     ?>
@@ -69,8 +69,8 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
                 ?>
             </select>
             <br>
-            <label class="lbAjPers">Département :</label>
-            <select class="boxAjPers" name="departement">
+            <label class="labelGauche">Département :</label>
+            <select class="boxDroite" name="departement">
                 <?php
                 foreach ($departements as $departement){
                 ?>
@@ -80,7 +80,7 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
                 ?>
             </select>
             <br>
-            <input class="boxAjPers" type="submit" value="Valider">
+            <input class="boxDroite" type="submit" value="Valider">
         </form>
 <?php
     } else {
@@ -88,12 +88,13 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
         $fonctionManager = new FonctionManager();
         $fonctions = $fonctionManager->getAllFonctions();
 
-?>      <form id="formConnectSalarie" action="index.php?page=1" method="post">
-            <label class="lbAjPers">Téléphone professionnel :</label>
-            <input class="boxAjPers" type="tel" <?= $patternTel ?> name="telephone" required>
+?>
+        <form id="formConnectSalarie" action="index.php?page=1" method="post">
+            <label class="labelGauche">Téléphone professionnel :</label>
+            <input class="boxDroite" type="tel" <?= $patternTel ?> name="telephone" required>
             <br>
-            <label class="lbAjPers">Fonction :</label>
-            <select class="boxAjPers" name="fonction">
+            <label class="labelGauche">Fonction :</label>
+            <select class="boxDroite" name="fonction">
                 <?php
                 foreach ($fonctions as $fonction){
                     ?>
@@ -103,7 +104,7 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
                 ?>
             </select>
             <br>
-            <input class="boxAjPers" type="submit" value="Valider">
+            <input class="boxDroite" type="submit" value="Valider">
         </form>
 <?php
     }

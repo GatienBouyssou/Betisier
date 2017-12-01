@@ -49,6 +49,11 @@ class PersManager
                                  VALUES( :nom , :prenom , :telephone , :email, 0, :login , :mdp )', $array);
     }
 
+    public function getAllEnseignants(){
+        return App::getDb()->query('SELECT p.per_num, per_nom FROM personne p 
+                                        JOIN salarie s ON s.per_num=p.per_num 
+                                        JOIN fonction f ON f.fon_num=s.fon_num');
+    }
 
 }
 
