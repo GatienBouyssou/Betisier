@@ -15,9 +15,9 @@ class PersManager
         return App::getDb()->query('SELECT per_num, per_nom, per_prenom FROM personne');
     }
 
-    public function getPers($value)
+    public function getPers($per_num)
     {
-        return App::getDb()->prepare('SELECT per_nom, per_mail ,per_tel FROM personne WHERE per_num= ?', [$value], true);
+        return App::getDb()->prepare('SELECT per_nom, per_mail ,per_tel FROM personne WHERE per_num= ?', [$per_num], true);
     }
 
     public function getPersByLogin($per_login)
