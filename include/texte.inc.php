@@ -72,11 +72,19 @@ case 10:
     break;
 
 case 11:
-	// inclure ici la page...
+    include("pages/rechercherCitation.inc.php");
     break;
 
 case 12:
 	// inclure ici la page...
+    break;
+
+case 13:
+    break;
+
+case 14:
+    break;
+case 15:
     break;
 
 default : 	include_once('pages/accueil.inc.php');

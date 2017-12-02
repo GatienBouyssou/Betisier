@@ -70,6 +70,7 @@ if (!empty($cit_num)){
         $moyenne = $voteManager->getMoyenneCitation($citation->cit_num);
         $aVote = $voteManager->getVote($etuCourant->per_num, $citation->cit_num);
         $compteur ++;
+
 ?>
         <tr>
             <td><?= $per_nom->per_nom ?></td>
@@ -79,7 +80,7 @@ if (!empty($cit_num)){
             <?php if (empty($aVote->vot_valeur)) { ?>
                 <td><img src="image/modifier.png" alt="modifier" onclick="noter(<?= $citation->cit_num?>)" onmouseover="style.cursor = 'pointer';"></td>
             <?php } else { ?>
-                <td><img src="image/erreur.png" alt="erreur" onclick="modifNote(<?=$aVote->vot_valeur, $citation->cit_num?>)"  onmouseover="style.cursor = 'pointer';"></td>
+                <td><img src="image/erreur.png" alt="erreur" onclick="modifNote(<?=$aVote->vot_valeur.', '.$citation->cit_num?>)"  onmouseover="style.cursor = 'pointer';"></td>
             <?php } ?>
         </tr>
 <?php

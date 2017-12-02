@@ -55,6 +55,12 @@ class PersManager
                                         JOIN fonction f ON f.fon_num=s.fon_num');
     }
 
+    public function getEnseignantByNom($per_nom){
+        return App::getDb()->prepare('SELECT p.per_num FROM personne p 
+                                        JOIN salarie s ON s.per_num=p.per_num 
+                                        JOIN fonction f ON f.fon_num=s.fon_num
+                                        WHERE per_nom=?', [$per_nom]);
+    }
 }
 
 

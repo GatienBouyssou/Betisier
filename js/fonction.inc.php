@@ -1,6 +1,6 @@
 <script>
     function eventPers(per_num){
-        window.location.replace("http://localhost/BetisierEtu/index.php?page=2&id=" + per_num);
+        window.location.href ="index.php?page=2&id=" + per_num;
     }
 
 
@@ -10,15 +10,15 @@
 
 
     function redirectionAccueil() {
-        setTimeout(function(){window.location.replace("http://localhost/BetisierEtu/index.php?page=0")},2000);
+        setTimeout(function(){window.location.href ="index.php?page=0"},2000);
     }
 
     function connect() {
-        window.location.replace("http://localhost/BetisierEtu/index.php?page=9");
+        window.location.href ="index.php?page=9";
     }
 
     function disconnect() {
-        window.location.replace("http://localhost/BetisierEtu/index.php?page=10");
+        window.location.href ="index.php?page=10";
     }
 
     function modifNote(vot_valeur, cit_num){
@@ -27,14 +27,14 @@
         var float = parseFloat(number);
         while (number === "" || isNaN(float) || float > 20 || float < 0) {
             number = prompt("Malheureusement, il nous faut un nombre en entre 0 et 20", number);
-            var float = parseFloat(number);
+            float = parseFloat(number);
         }
         if (number === null){
             window.alert("L'ancienne valeur a été remise");
-            window.location.replace("http://localhost/BetisierEtu/index.php?page=6");
+            window.location.href ="index.php?page=6";
         } else {
             window.alert("Les modifications ont bien été appliqués");
-            window.location.replace("http://localhost/BetisierEtu/index.php?page=6&cit_num=" + cit_num + "&value=" + number);
+            window.location.href ="index.php?page=6&cit_num="+ cit_num + "&value=" + number;
         }
     }
 
@@ -44,14 +44,14 @@
         var float = parseFloat(number);
         while ((isNaN(float) || float > 20 || float < 0) && number !== null) {
             number = prompt("Malheureusement, il nous faut un nombre en entre 0 et 20", number);
-            var float = parseFloat(number);
+            float = parseFloat(number);
         }
         if (number === null){
             window.alert("L'ancienne valeur a été remise");
-            window.location.replace("http://localhost/BetisierEtu/index.php?page=6");
+            window.location.href ="index.php?page=6";
         } else {
             window.alert("Les modifications ont bien été appliqués");
-            window.location.replace("http://localhost/BetisierEtu/index.php?page=6&cit_num=" + cit_num + "&value=" + number);
+            window.location.href ="index.php?page=6&cit_num="+ cit_num + "&value=" + number;
         }
 
     }

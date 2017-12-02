@@ -6,9 +6,10 @@ $managerVille = new VilleManager();
 if (empty($_POST['nomVille'])) {
 ?>
     <form id="formConnect" action="index.php?page=7" method="post">
-        nom : <input class="ajoutVille" type="text" name="nomVille">
+        <label>Nom :</label>
+        <input class="boxDroite" type="text" name="nomVille" required>
         <br>
-        <input class="ajoutVille" type="submit" value="Valider">
+        <input class="boxDroite" type="submit" value="Valider">
     </form>
 <?php
 } else{

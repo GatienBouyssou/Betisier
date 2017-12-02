@@ -38,16 +38,16 @@ if(empty($_SESSION['login'])){?>
             <ul>
                 <li><a href="index.php?page=5">Ajouter</a></li>
                 <li><a href="index.php?page=6">Lister</a></li>
-                <li><a href="index.php?page=8">Rechercher</a></li>
-                <li><a href="index.php?page=9">Valider</a></li>
-                <li><a href="index.php?page=10">Supprimer</a></li>
+                <li><a href="index.php?page=11">Rechercher</a></li>
+                <li><a href="index.php?page=12">Valider</a></li>
+                <li><a href="index.php?page=13">Supprimer</a></li>
             </ul>
             <p><img class = "icone" src="image/ville.png" alt="Ville"/>Ville</p>
             <ul>
                 <li><a href="index.php?page=8">Lister</a></li>
                 <li><a href="index.php?page=7">Ajouter</a></li>
-                <li><a href="index.php?page=11">Modifier</a></li>
-                <li><a href="index.php?page=12">Supprimer</a></li>
+                <li><a href="index.php?page=14">Modifier</a></li>
+                <li><a href="index.php?page=15">Supprimer</a></li>
             </ul>
         </div>
     </div>
@@ -66,13 +66,13 @@ if(empty($_SESSION['login'])){?>
             <ul>
                 <li><a href="index.php?page=5">Ajouter</a></li>
                 <li><a href="index.php?page=6">Lister</a></li>
-                <li><a href="index.php?page=8">Rechercher</a></li>
+                <li><a href="index.php?page=11">Rechercher</a></li>
             </ul>
             <p><img class = "icone" src="image/ville.png" alt="Ville"/>Ville</p>
             <ul>
                 <li><a href="index.php?page=8">Lister</a></li>
                 <li><a href="index.php?page=7">Ajouter</a></li>
-                <li><a href="index.php?page=11">Modifier</a></li>
+                <li><a href="index.php?page=16">Modifier</a></li>
             </ul>
         </div>
     </div>
