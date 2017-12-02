@@ -9,9 +9,9 @@ use Classes\App;
 class SalarieManager extends PersManager
 {
 
-    public function getSal($value)
+    public function getSal($per_num)
     {
-        return App::getDb()->prepare('SELECT sal_telprof, fon_num FROM salarie WHERE per_num= ?', [$value], true);
+        return App::getDb()->prepare('SELECT sal_telprof, fon_num FROM salarie WHERE per_num= ?', [$per_num], true);
     }
 
     public function addSalarie($salInfo){

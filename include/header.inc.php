@@ -12,7 +12,7 @@
         ?>
 
 </head>
-	<body onload="eventPers()">
+	<body>
 	<div id="header">
         <?php
         if (empty($_SESSION['login'])) {
