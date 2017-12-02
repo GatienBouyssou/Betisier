@@ -2,7 +2,6 @@
 use Classes\UTI\PersManager;
 
 $persManager = new Classes\UTI\PersManager();
-
 if(empty($_SESSION['login'])){?>
     <div id="menu">
         <div id="menuInt">

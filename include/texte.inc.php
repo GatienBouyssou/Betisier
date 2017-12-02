@@ -76,7 +76,7 @@ case 11:
     break;
 
 case 12:
-	// inclure ici la page...
+	include("pages/validerCitation.inc.php");
     break;
 
 case 13:

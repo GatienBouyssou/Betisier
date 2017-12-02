@@ -35,7 +35,8 @@ class PersManager
     public function isAdmin($login)
     {
         $varAdmin = App::getDb()->prepare('SELECT per_admin FROM personne WHERE per_login= ?', [$login], true);
-        if ($varAdmin === 1){
+
+        if ($varAdmin->per_admin == 1){
             return true;
         }
         return false;

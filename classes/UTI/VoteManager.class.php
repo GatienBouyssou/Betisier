@@ -39,6 +39,11 @@ class VoteManager{
                                       WHERE T.moyenne=? 
                                       GROUP BY cit_num', [$vot_valeur]);
     }
+
+    public function supprimerNote($cit_num)
+    {
+        App::getDb()->prepare('DELETE FROM vote WHERE cit_num=?', [$cit_num]);
+    }
 }
 
 ?>

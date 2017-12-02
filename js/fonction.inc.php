@@ -55,4 +55,12 @@
         }
 
     }
+
+    function valider(cit_num) {
+        window.location.href ="index.php?page=12&cit_num=" + cit_num + "&valid=0";
+    }
+
+    function invalider(cit_num) {
+        window.location.href ="index.php?page=12&cit_num=" + cit_num + "&valid=1";
+    }
 </script>
