@@ -24,5 +24,10 @@ class VilleManager
     {
         return App::getDb()->prepare('SELECT vil_nom FROM ville WHERE vil_num= ?', [$value], true);
     }
+
+    public function supprimerVille($vil_num)
+    {
+        App::getDb()->prepare('DELETE FROM ville WHERE vil_num=?', [$vil_num]);
+    }
 }
 ?>

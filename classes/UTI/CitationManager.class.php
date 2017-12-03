@@ -57,6 +57,11 @@ class CitationManager
         App::getDb()->prepare('DELETE FROM citation WHERE cit_num=?', [$cit_num]);
     }
 
+    public function supprimerCitationByEtu($per_num)
+    {
+        App::getDb()->prepare('DELETE FROM citation WHERE per_num_etu=?', [$per_num]);
+    }
+
 }
 
 

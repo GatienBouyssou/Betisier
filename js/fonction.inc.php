@@ -67,4 +67,14 @@
     function modifierPers(per_num) {
         window.location.href ="index.php?page=3&per_num=" + per_num;
     }
+    function supprimerVille(vil_num) {
+        var bool = confirm("Attention supprimer la ville supprimera les étudiants et les citations en relation avec la ville !")
+        if (bool){
+            window.location.href ="index.php?page=15&vil_num=" + vil_num;
+        }
+        else {
+            window.location.href ="index.php?page=15";
+        }
+
+    }
 </script>

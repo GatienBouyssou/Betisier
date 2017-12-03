@@ -35,6 +35,16 @@ class EtudiantManager extends PersManager
         App::getDb()->prepare('DELETE FROM etudiant WHERE per_num=?', [$per_num]);
     }
 
+    public function getEtudiantByDep($dep_num)
+    {
+        return App::getDb()->prepare('SELECT per_num FROM etudiant WHERE dep_num=?', [$dep_num]);
+    }
+
+    public function supprimerEtudiantByDep($dep_num)
+    {
+        App::getDb()->prepare('DELETE FROM etudiant WHERE dep_num=?', [$dep_num]);
+    }
+
 }
 
 

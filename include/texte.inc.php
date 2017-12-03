@@ -83,6 +83,7 @@ case 13:
 case 14:
     break;
 case 15:
+    include("pages/supprimerVille.inc.php");
     break;
 
 default : 	include_once('pages/accueil.inc.php');
