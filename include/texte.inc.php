@@ -78,6 +78,7 @@ case 12:
     break;
 
 case 13:
+    include("pages/supprimerCitation.inc.php");
     break;
 
 case 14:

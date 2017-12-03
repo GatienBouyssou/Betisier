@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `citation` (
-`cit_num` int(11) NOT NULL,
+`citation` int(11) NOT NULL,
   `per_num` int(11) NOT NULL,
   `per_num_valide` int(11) DEFAULT NULL,
   `per_num_etu` int(11) NOT NULL,
@@ -265,7 +265,7 @@ INSERT INTO `ville` (`vil_num`, `vil_nom`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `vote` (
-  `cit_num` int(11) NOT NULL,
+  `citation` int(11) NOT NULL,
   `per_num` int(11) NOT NULL,
   `vot_valeur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -291,7 +291,7 @@ INSERT INTO `vote` (`cit_num`, `per_num`, `vot_valeur`) VALUES
 -- Index pour la table `citation`
 --
 ALTER TABLE `citation`
- ADD UNIQUE KEY `citation_pk` (`cit_num`), ADD KEY `est_auteur_fk` (`per_num`), ADD KEY `valide_fk` (`per_num_valide`), ADD KEY `depose_fk` (`per_num_etu`);
+ ADD UNIQUE KEY `citation_pk` (`citation`), ADD KEY `est_auteur_fk` (`per_num`), ADD KEY `valide_fk` (`per_num_valide`), ADD KEY `depose_fk` (`per_num_etu`);
 
 --
 -- Index pour la table `departement`
@@ -355,7 +355,7 @@ ALTER TABLE `vote`
 -- AUTO_INCREMENT pour la table `citation`
 --
 ALTER TABLE `citation`
-MODIFY `cit_num` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+MODIFY `citation` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT pour la table `departement`
 --

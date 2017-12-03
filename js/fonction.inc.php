@@ -77,4 +77,14 @@
         }
 
     }
+
+    function supprCitation(cit_num) {
+        var bool = confirm("Voulez vous vraiment supprimer cette citation ?")
+        if (bool){
+            window.location.href ="index.php?page=13&cit_num=" + cit_num;
+        }
+        else {
+            window.location.href ="index.php?page=13";
+        }
+    }
 </script>
