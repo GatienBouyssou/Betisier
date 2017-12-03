@@ -87,4 +87,14 @@
             window.location.href ="index.php?page=13";
         }
     }
+
+    function supprPersonne(per_num) {
+        var bool = confirm("Voulez vous vraiment supprimer cette personne ?")
+        if (bool){
+            window.location.href ="index.php?page=4&per_num=" + per_num;
+        }
+        else {
+            window.location.href ="index.php?page=4";
+        }
+    }
 </script>

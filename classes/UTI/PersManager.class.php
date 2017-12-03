@@ -74,6 +74,11 @@ class PersManager
                               per_tel=:telephone, per_mail=:email, per_login=:login, per_pwd=:mdp
                               WHERE per_num=:per_num', $infosPers);
     }
+
+    public function supprimerPersonne($per_num)
+    {
+        App::getDb()->prepare('DELETE FROM personne WHERE per_num=?', [$per_num]);
+    }
 }
 
 

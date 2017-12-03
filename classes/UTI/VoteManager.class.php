@@ -44,6 +44,11 @@ class VoteManager{
     {
         App::getDb()->prepare('DELETE FROM vote WHERE cit_num=?', [$cit_num]);
     }
+
+    public function supprimerNoteByPers($per_num)
+    {
+        App::getDb()->prepare('DELETE FROM vote WHERE per_num=?', [$per_num]);
+    }
 }
 
 ?>

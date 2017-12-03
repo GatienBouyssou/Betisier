@@ -82,6 +82,7 @@ case 13:
     break;
 
 case 14:
+    include("pages/supprimerPersonne.inc.php");
     break;
 case 15:
     include("pages/supprimerVille.inc.php");
