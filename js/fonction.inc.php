@@ -29,12 +29,13 @@
             number = prompt("Malheureusement, il nous faut un nombre en entre 0 et 20", number);
             float = parseFloat(number);
         }
+
         if (number === null){
             window.alert("L'ancienne valeur a été remise");
             window.location.href ="index.php?page=6";
         } else {
             window.alert("Les modifications ont bien été appliqués");
-            window.location.href ="index.php?page=6&cit_num="+ cit_num + "&value=" + number;
+            window.location.href ="index.php?page=6&cit_num="+ cit_num + "&value=" + float;
         }
     }
 

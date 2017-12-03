@@ -15,12 +15,19 @@ $fonction = $_POST['fonction'];
 if (isset($postCitation)){
     $motsInterdits = $motManager->getAllMots();
     $motsInvalide = [];
+    $changement = false;
     foreach ($motsInterdits as $motInterdit){
         $mot_interdit = $motInterdit->mot_interdit;
-        if (strpos(strtolower($postCitation), $mot_interdit)){
-            $postCitation = preg_replace("#$mot_interdit#i",'---',$postCitation);
+        var_dump($temp !== $postCitation);
+        $temp = preg_replace("#$mot_interdit#i",'---',$postCitation,1);
+        if ($temp !== $postCitation){
+            $postCitation = $temp;
             $motsInvalide[] = $mot_interdit;
+        } else if(!empty(strpos(strtolower($postCitation), $mot_interdit))){
+            $motsInvalide[] = $mot_interdit;
+            $postCitation = preg_replace("#$mot_interdit#i",'---',$postCitation);
         }
+
     }
 }
 $enseignants = $personneManager->getAllEnseignants();

@@ -25,10 +25,10 @@ class VoteManager{
 
     public function setVote( $cit_num, $per_num, $vot_valeur){
         $vote = $this->getVote($per_num, $cit_num);
-        if (empty($vote->vot_valeur)){
+        if (empty($vote)){
           App::getDb()->prepare('INSERT INTO vote VALUE(?,?,?)', [$cit_num, $per_num, $vot_valeur]);
         } else {
-          App::getDb()->prepare('UPDATE vote SET vot_valeur=? WHERE cit_num=? AND per_num=?', [$cit_num, $per_num, $vot_valeur]);
+          App::getDb()->prepare('UPDATE vote SET vot_valeur=? WHERE cit_num=? AND per_num=?', [$vot_valeur, $cit_num, $per_num ]);
         }
     }
 

@@ -10,7 +10,7 @@ $persManager = new PersManager();
 $citationManager = new CitationManager();
 $voteManager = new VoteManager();
 
-$citations = $citationManager->getCitationAValider();
+
 
 $cit_num = $_GET['cit_num'];
 if (!empty($cit_num)){
@@ -20,7 +20,7 @@ if (!empty($cit_num)){
         $citationManager->supprimerCitation($cit_num);
     }
 }
-
+$citations = $citationManager->getCitationAValider();
 if (!empty($citations)) {
 
     foreach ($citations as $citation) {

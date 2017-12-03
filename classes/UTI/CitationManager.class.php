@@ -48,7 +48,7 @@ class CitationManager
 
     public function validerCitation($cit_num, $date)
     {
-        App::getDb()->prepare('UPDATE citation SET cit_valide=0, cit_date_valide=?  
+        App::getDb()->prepare('UPDATE citation SET cit_valide=1, cit_date_valide=?  
                                 WHERE cit_num=?', [$date, $cit_num]);
     }
 
