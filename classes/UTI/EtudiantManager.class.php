@@ -2,6 +2,7 @@
 namespace Classes\UTI;
 
 use Classes\App;
+use Classes\UTI\PersManager;
 
 /**
  * Gestion des informations d'un étudiant
@@ -15,6 +16,7 @@ class EtudiantManager extends PersManager
     }
 
     public function  addEtudiant($infoEtu){
+        var_dump($infoEtu);
         App::getDb()->prepare('INSERT INTO etudiant VALUES(:per_num,:departement,:division)', $infoEtu);
     }
 

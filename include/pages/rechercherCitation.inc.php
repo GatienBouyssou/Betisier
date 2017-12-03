@@ -76,9 +76,12 @@ if (!empty($motRecherche)){
                              onmouseover="style.cursor = 'pointer';"></td>
                 <?php } ?>
             </tr>
-            </table>
+
             <?php
         }
+        ?>
+        </table>
+        <?php
     } else {
     ?>
         <em id="messageErreur">Aucun resultat ne correspond à vos critères</em>

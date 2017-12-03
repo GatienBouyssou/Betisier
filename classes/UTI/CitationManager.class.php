@@ -68,6 +68,11 @@ class CitationManager
                                       WHERE per_num_etu=?', [$per_num]);
     }
 
+    public function supprimerCitationBySal($per_num)
+    {
+        App::getDb()->prepare('DELETE FROM citation  WHERE per_num=?', [$per_num]);
+    }
+
 }
 
 

@@ -6,14 +6,17 @@ use Classes\UTI\PersManager;
 use Classes\UTI\DepManager;
 use Classes\UTI\FonctionManager;
 use Classes\UTI\DivisionManager;
+use Classes\UTI\CitationManager;
+use Classes\UTI\VoteManager;
 
-
+$voteManager = new VoteManager();
 $managerEtu = new EtudiantManager();
 $depManager = new DepManager();
 $divManager = new DivisionManager();
 $salarieManager = new SalarieManager();
 $fonctionManager = new FonctionManager();
 $managerPers = new PersManager();
+$citationManager = new CitationManager();
 
 $personnes = $managerEtu->getAllPers();
 $per_num = $_GET['per_num'];
@@ -82,6 +85,7 @@ if(!empty($personnes) && empty($per_num)) {
             <?php
             } else {
             ?>
+
                 <label class="boxDroite">
                     Etudiant<input type="radio" checked="checked" name="etat" value="etudiant">
                     Salarié <input type="radio" name="etat" value="salarie">
@@ -193,17 +197,19 @@ if(!empty($personnes) && empty($per_num)) {
             $existSal = $salarieManager->getSal($per_num);
 
             if ($existSal){
-                try {
-                    $salarieManager->supprimerSal($per_num);
-                    $managerEtu->addEtudiant(array_merge(["per_num" => $per_num],$_POST));
-                }catch (Exception $e){
-                    echo 'Malheureusement le salarié est impliqué dans les citations ! Supprimer ces liens et réessayez'."\n";
-                }finally{
-                ?>
-                    <script>redirectionAccueil()</script>
-                <?php
+
+                $citations = $citationManager->getCitationsByPersonne($per_num);
+                foreach ($citations as $citation){
+                    $voteManager->supprimerNote($citation->cit_num);
                 }
 
+                $citationManager->supprimerCitationBySal($per_num);
+
+
+                $salarieManager->supprimerSal($per_num);
+
+
+                $managerEtu->addEtudiant(array_merge(["per_num" => $per_num],$_POST));
             } else {
                 $managerEtu->modifyEtudiant(array_merge(["per_num" => $per_num],$_POST));
             }
@@ -211,17 +217,20 @@ if(!empty($personnes) && empty($per_num)) {
         } else {
             $existEtudiant = $managerEtu->getEtudiant($per_num);
             if ($existEtudiant){
-                try{
-                    $managerEtu->supprimerEtudiant($per_num);
-                    $salarieManager->addSalarie(array_merge(["per_num" => $per_num],$_POST));
-                }catch (Exception $e){
-                    echo 'Malheureusement l\'etudiant est impliqué dans les citations ! Supprimer ces liens et recommencez'."\n";
-                } finally {
-                ?>
-                    <script>redirectionAccueil()</script>
-                <?php
+                var_dump($citationManager);
+                $citations = $citationManager->getCitationsByEtudiant($per_num);
+                foreach ($citations as $citation){
+                    $voteManager->supprimerNote($citation->cit_num);
                 }
+                $voteManager->supprimerNoteByPers($per_num);
+
+                $citationManager->supprimerCitationByEtu($per_num);
+
+                $managerEtu->supprimerEtudiant($per_num);
+
+                $salarieManager->addSalarie(array_merge(["per_num" => $per_num],$_POST));
             } else {
+
                 $salarieManager->modifySalarie(array_merge(["per_num" => $per_num],$_POST));
             }
         }

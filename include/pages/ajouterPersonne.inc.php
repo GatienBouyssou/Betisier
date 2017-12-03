@@ -7,8 +7,9 @@ use \Classes\UTI\DivisionManager;
 use \Classes\UTI\FonctionManager;
 use \Classes\UTI\SalarieManager;
 use \Classes\UTI\EtudiantManager;
-
+$managerPers = new PersManager();
 $patternTel = " pattern=\"[0-9]{10}\"";
+
 
 if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat']) ) {
     ?>
@@ -42,12 +43,12 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
 <?php
 } elseif (!empty($_POST['etat']) && empty($_POST['fonction']) && empty($_POST['division'])) {
 
-    $managerPers = new PersManager();
+
     $connexionManager = new ConnexionManager($managerPers);
     $_POST['mdp'] = $connexionManager->tradMdp($_POST['mdp']);
     $managerPers->addPersonne($_POST);
     $per_num = $managerPers->getPersByLogin($_POST['login']);
-    $_SESSION['per_num'] = $per_num->per_num;
+
 
     if ($_POST['etat'] === 'etudiant'){
         $depManager = new DepManager();
@@ -57,7 +58,7 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
         $departements = $depManager->getAllDepartements();
 
 ?>
-        <form id="formConnectEtudiant" action="index.php?page=1" method="post">
+        <form id="formConnectEtudiant" action="index.php?page=1&per_num=<?= $per_num->per_num ?>" method="post">
             <label class="labelGauche">Année :</label>
             <select class="boxDroite" name="division">
                 <?php
@@ -89,7 +90,7 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
         $fonctions = $fonctionManager->getAllFonctions();
 
 ?>
-        <form id="formConnectSalarie" action="index.php?page=1" method="post">
+        <form id="formConnectSalarie" action="index.php?page=1&per_num=<?= $per_num->per_num?>" method="post">
             <label class="labelGauche">Téléphone professionnel :</label>
             <input class="boxDroite" type="tel" <?= $patternTel ?> name="telephone" required>
             <br>
@@ -110,13 +111,13 @@ if (empty($_POST['fonction']) && empty($_POST['division']) && empty($_POST['etat
     }
 } else {
 
-
+    $per_num = $_GET['per_num'];
     if (!empty($_POST['departement'])){
         $etudiantManager = new EtudiantManager();
-        $etudiantManager->addEtudiant([$_SESSION['per_num'], $_POST['departement'], $_POST['division']]);
+        $etudiantManager->addEtudiant(array_merge(["per_num" => $per_num],$_POST));
     } else {
         $salarieManager = new SalarieManager();
-        $salarieManager->addSalarie([$_SESSION['per_num'],$_POST['telephone'], $_POST['fonction']]);
+        $salarieManager->addSalarie(array_merge(["per_num" => $per_num],$_POST));
     }
 ?>
     <p>Votre personne a été ajouté avec succès</p>

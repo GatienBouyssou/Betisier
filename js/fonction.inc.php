@@ -98,4 +98,15 @@
             window.location.href ="index.php?page=4";
         }
     }
+
+    function modifierVille(vil_num){
+        var vil_nom = prompt("Saisissez le nouveau nom de la ville");
+        if (vil_nom === null){
+            window.location.href ="index.php?page=14";
+        }
+        else {
+            window.location.href ="index.php?page=14&vil_nom="+vil_nom + "&vil_num=" + vil_num;
+        }
+
+    }
 </script>

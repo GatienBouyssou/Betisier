@@ -8,7 +8,9 @@
 		</title>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
         <?php
+            use \Classes\UTI\PersManager;
             require_once('js/fonction.inc.php');
+            $persManager = new PersManager();
         ?>
 
 </head>
@@ -22,14 +24,23 @@
         } else {
 
         ?>
-            Utilisateur :<em> <?php echo $_SESSION['login'] ?></em>
-            <button class="button buttonConnect" value="deconnexion" onclick="disconnect()">Déconnexion</button>
+            <button class="button buttonConnect" value="deconnexion" onclick="disconnect()">Utilisateur : <?= $_SESSION['login'] ?>Déconnexion</button>
         <?php
         }
         ?>
 		<div id="entete">
 			<div id="logo">
-
+                <?php
+                if (empty($_SESSION['login'])) {
+                    ?>
+                    <img src="image/lebetisier.gif" alt="le logo du betisier">
+                    <?php
+                } else {
+                    ?>
+                    <img src="image/smile.jpg" alt="le logo du betisier">
+                    <?php
+                }
+                ?>
 			</div>
 			<div id="titre">
 				Le bétisier de l'IUT,<br />Partagez les meilleures perles !!!

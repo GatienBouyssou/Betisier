@@ -29,5 +29,15 @@ class VilleManager
     {
         App::getDb()->prepare('DELETE FROM ville WHERE vil_num=?', [$vil_num]);
     }
+
+    public function modifyVille($vil_nom, $vil_num)
+    {
+        App::getDb()->prepare('UPDATE ville SET  vil_nom=? WHERE vil_num=?', [$vil_nom, $vil_num]);
+    }
+
+    public function villeExiste($nomVille)
+    {
+        return App::getDb()->prepare('SELECT vil_num FROM ville WHERE vil_nom=?', [$nomVille]);
+    }
 }
 ?>

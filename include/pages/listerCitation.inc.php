@@ -1,20 +1,20 @@
 <h1>Liste des citations déposées</h1>
 
 <?php
-use \Classes\UTI\PersManager;
+use \Classes\UTI\EtudiantManager;
 use \Classes\UTI\CitationManager;
 use \Classes\UTI\VoteManager;
 
-$persManager = new PersManager();
+$etuManager = new EtudiantManager();
 $citationManager = new CitationManager();
 $voteManager = new VoteManager();
 
 $citations = $citationManager->getAllCitations();
 
+$etuCourant = $etuManager->getPersByLogin($_SESSION['login']);
 if ($citations) {
 
-    $etuCourant = $persManager->getPersByLogin($_SESSION['login']);
-    $nbrCitations = $citationManager->getNumberCitation();
+        $nbrCitations = $citationManager->getNumberCitation();
     $compteur = 0;
 
     $cit_num = $_GET['cit_num'];
@@ -38,7 +38,7 @@ if ($citations) {
             </tr>
             <?php
             foreach ($citations as $citation) {
-                $per_nom = $persManager->getPers($citation->per_num);
+                $per_nom = $etuManager->getPers($citation->per_num);
                 $moyenne = $voteManager->getMoyenneCitation($citation->cit_num);
                 $compteur++;
                 ?>
@@ -69,21 +69,21 @@ if ($citations) {
             </tr>
             <?php
             foreach ($citations as $citation) {
-                $per_nom = $persManager->getPers($citation->per_num);
+                $per_nom = $etuManager->getPers($citation->per_num);
                 $moyenne = $voteManager->getMoyenneCitation($citation->cit_num);
                 $aVote = $voteManager->getVote($etuCourant->per_num, $citation->cit_num);
                 $compteur++;
-
+                $etu_div = $etuManager->getEtudiant($etuCourant->per_num)
                 ?>
                 <tr>
                     <td><?= $per_nom->per_nom ?></td>
                     <td><?= $citation->cit_libelle ?></td>
                     <td><?= $citation->cit_date ?></td>
                     <td><?= $moyenne->moyenne ?></td>
-                    <?php if (empty($aVote->vot_valeur)) { ?>
+                    <?php if (empty($aVote->vot_valeur) && $etu_div) { ?>
                         <td><img src="image/modifier.png" alt="modifier" onclick="noter(<?= $citation->cit_num ?>)"
                                  onmouseover="style.cursor = 'pointer';"></td>
-                    <?php } else { ?>
+                    <?php } else if ($etu_div) { ?>
                         <td><img src="image/erreur.png" alt="erreur"
                                  onclick="modifNote(<?= $aVote->vot_valeur . ', ' . $citation->cit_num ?>)"
                                  onmouseover="style.cursor = 'pointer';"></td>

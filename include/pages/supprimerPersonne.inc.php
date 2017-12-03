@@ -23,6 +23,13 @@ if (!empty($per_num)){
     $voteManager->supprimerNoteByPers($per_num);
     $citationManager->supprimerCitationByEtu($per_num);
 
+    $citations = $citationManager->getCitationsByPersonne($per_num);
+    foreach ($citations as $citation){
+        $voteManager->supprimerNote($citation->cit_num);
+    }
+    $citationManager->supprimerCitationByEtu($per_num);
+
+    $citationManager->supprimerCitationBySal($per_num);
 
     $existEtu = $managerEtu->getEtudiant($per_num);
     if ($existEtu){

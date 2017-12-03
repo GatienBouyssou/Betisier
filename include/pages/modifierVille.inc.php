@@ -1,4 +1,4 @@
-<h1>Supprimer une ville</h1>
+<h1>Modifier une ville</h1>
 <?php
 use \Classes\UTI\VilleManager;
 use \Classes\UTI\DepManager;
@@ -10,16 +10,17 @@ $managerVille = new VilleManager();
 $etuManager = new EtudiantManager();
 $citationManager = new CitationManager();
 
+
+
 $vil_num = $_GET['vil_num'];
-if (!empty($vil_num)) {
-    $dep_num = $depManager->getDepartByVille($vil_num);
-    $etudiants = $etuManager->getEtudiantByDep($dep_num);
-    foreach ($etudiants as $etudiant) {
-        $citationManager->supprimerCitationByEtu($per_num);
-    }
-    $etuManager->supprimerEtudiantByDep($dep_num);
-    $depManager->supprimerDepartement($vil_num);
-    $managerVille->supprimerVille($vil_num);
+$vil_nom=$_GET['vil_nom'];
+$ville = $managerVille->villeExiste($vil_nom);
+if($ville){
+    ?>
+    <em id="messageErreur">La ville existe déja</em>
+    <?php
+} else {
+    $managerVille->modifyVille($vil_nom, $vil_num);
 }
 
 $villes = $managerVille->getAllVille();
@@ -32,13 +33,14 @@ if ($villes) {
         </tr>
         <?php
 
+
         foreach ($villes as $ville) {
 
             ?>
             <tr>
                 <td><?php echo $ville->vil_num ?></td>
                 <td><?php echo $ville->vil_nom ?></td>
-                <td><img src="image/erreur.png" alt="invalider" onclick="supprimerVille(<?= $ville->vil_num
+                <td><img src="image/modifier.png" alt="invalider" onclick="modifierVille(<?= $ville->vil_num
                     ?>)" onmouseover="style.cursor = 'pointer';"></td>
             </tr>
             <?php
@@ -49,7 +51,6 @@ if ($villes) {
     <?php
 } else {
     ?>
-    <em id="messageErreur">Il n'y a aucune citation à valider</em>
+    <em id="messageErreur">Il n'y a aucunes villes à modifier</em>
     <?php
 }
-?>

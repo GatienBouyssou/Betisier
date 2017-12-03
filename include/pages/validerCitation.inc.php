@@ -22,19 +22,22 @@ if (!empty($cit_num)){
 }
 $citations = $citationManager->getCitationAValider();
 if (!empty($citations)) {
-
+    ?>
+    <table>
+        <tr>
+            <th>Nom de l'enseignant</th>
+            <th>Libellé</th>
+            <th>Date</th>
+            <th>Validation</th>
+            <th>Invalider</th>
+        </tr>
+    <?php
     foreach ($citations as $citation) {
         $per_nom = $persManager->getPers($citation->per_num);
 
         ?>
-        <table>
-            <tr>
-                <th>Nom de l'enseignant</th>
-                <th>Libellé</th>
-                <th>Date</th>
-                <th>Validation</th>
-                <th>Invalider</th>
-            </tr>
+
+
             <tr>
                 <td><?= $per_nom->per_nom ?></td>
                 <td><?= $citation->cit_libelle ?></td>
@@ -44,9 +47,11 @@ if (!empty($citations)) {
                 <td><img src="image/erreur.png" alt="invalider" onclick="invalider(<?= $citation->cit_num
                     ?>)" onmouseover="style.cursor = 'pointer';"></td>
             </tr>
-        </table>
         <?php
     }
+    ?>
+    </table>
+    <?php
 } else {
 ?>
     <em id="messageErreur">Il n'y a aucune citation à valider</em>
