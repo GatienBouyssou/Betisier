@@ -63,4 +63,8 @@
     function invalider(cit_num) {
         window.location.href ="index.php?page=12&cit_num=" + cit_num + "&valid=1";
     }
+
+    function modifierPers(per_num) {
+        window.location.href ="index.php?page=3&per_num=" + per_num;
+    }
 </script>

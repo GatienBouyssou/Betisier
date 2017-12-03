@@ -15,7 +15,19 @@ class SalarieManager extends PersManager
     }
 
     public function addSalarie($salInfo){
-        App::getDb()->prepare('INSERT INTO salarie VALUES(?,?,?)', $salInfo);
+        App::getDb()->prepare('INSERT INTO salarie VALUES(:per_num,:telephone,:fonction)', $salInfo);
+    }
+
+    public function supprimerSal($per_num)
+    {
+        App::getDb()->prepare('DELETE FROM salarie WHERE per_num=?', [$per_num]);
+    }
+
+    public function modifySalarie($infoSalarie)
+    {
+        App::getDb()->prepare('UPDATE salarie SET 
+                               sal_telprof=:telephone, fon_num=:fonction       
+                               WHERE per_num=:per_num', $infoSalarie);
     }
 }
 

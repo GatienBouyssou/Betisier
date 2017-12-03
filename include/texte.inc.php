@@ -28,7 +28,7 @@ case 2:
     break;
 case 3:
 	// inclure ici la page modification des personnes
-	include("pages/ModifierPersonne.inc.php");
+	include("pages/modifierPersonne.inc.php");
     break;
 case 4:
 	// inclure ici la page suppression personnes
@@ -60,8 +60,6 @@ case 8:
 
 	include("pages/listerVilles.inc.php");
     break;
-
-//
 
 //
 case 9:

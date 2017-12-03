@@ -17,7 +17,7 @@ class PersManager
 
     public function getPers($per_num)
     {
-        return App::getDb()->prepare('SELECT per_prenom, per_nom, per_mail ,per_tel FROM personne WHERE per_num= ?', [$per_num], true);
+        return App::getDb()->prepare('SELECT per_prenom, per_nom, per_mail ,per_tel, per_login FROM personne WHERE per_num= ?', [$per_num], true);
     }
 
     public function getPersByLogin($per_login)
@@ -61,6 +61,18 @@ class PersManager
                                         JOIN salarie s ON s.per_num=p.per_num 
                                         JOIN fonction f ON f.fon_num=s.fon_num
                                         WHERE per_nom=?', [$per_nom]);
+    }
+
+    public function getMdp($per_num)
+    {
+        return App::getDb()->prepare('SELECT per_pwd FROM personne WHERE per_num=?', [$per_num], true);
+    }
+
+    public function modifyPersonne($infosPers)
+    {
+        App::getDb()->prepare('UPDATE personne SET per_nom=:nom, per_prenom=:prenom, 
+                              per_tel=:telephone, per_mail=:email, per_login=:login, per_pwd=:mdp
+                              WHERE per_num=:per_num', $infosPers);
     }
 }
 
